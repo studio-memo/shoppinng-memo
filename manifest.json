@@ -6,7 +6,6 @@
   "display": "standalone",
   "background_color": "#FFF8A3",
   "theme_color": "#FFF8A3",
-
   "icons": [
     {
       "src": "memo-icon-192.png",
