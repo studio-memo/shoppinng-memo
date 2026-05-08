@@ -230,14 +230,9 @@ deleteButton.onclick = function () {
   renderMemos();
 };
 textSpan.onclick = function () {
-  const newText = prompt("タスクを編集", memos[index].text);
-
-  if (newText === null) return;
-  if (newText.trim() === "") return;
-
-  memos[index].text = newText;
-  saveMemos();
-  renderMemos();
+  editingIndex = index;
+  document.getElementById("editInput").value = memos[index].text;
+  document.getElementById("editModal").classList.remove("hidden");
 };
     list.appendChild(li);
   });
@@ -267,6 +262,23 @@ textSpan.onclick = function () {
   memos = [];
   saveMemos();
   renderMemos();
+}
+  function closeEditModal() {
+  document.getElementById("editModal").classList.add("hidden");
+  editingIndex = null;
+}
+
+function saveEditModal() {
+  const input = document.getElementById("editInput");
+  const newText = input.value.trim();
+
+  if (editingIndex === null) return;
+  if (newText === "") return;
+
+  memos[editingIndex].text = newText;
+  saveMemos();
+  renderMemos();
+  closeEditModal();
 }
 function downloadBackup() {
   const data = JSON.stringify(memos);
