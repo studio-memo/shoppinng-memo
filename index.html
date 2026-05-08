@@ -42,16 +42,18 @@
     }
 
   li {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
   background: #eee;
   margin-bottom: 8px;
   padding: 10px;
   border-radius: 8px;
   list-style: none;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
     li:hover {
       background: #ddd;
@@ -98,8 +100,10 @@
 }
 li span {
   flex: 1;
-  margin: 0 12px;
   min-width: 0;
+  margin: 0 12px;
+  text-align: left;
+  white-space: nowrap;
 }
   </style>
   <link rel="manifest" href="manifest.json">
