@@ -141,18 +141,15 @@ li span {
     </div>
 
     <ul id="memoList"></ul>
-<button class="clear-button" onclick="clearAllMemos()">
-  全削除
-</button>
-<div class="backup-area">
+<div class="bottom-buttons">
+  <button onclick="clearAllMemos()">全削除</button>
   <button onclick="downloadBackup()">保存</button>
+
   <label class="restore-button">
     復元
     <input type="file" accept=".json" onchange="restoreBackup(event)">
   </label>
 </div>
-    <p class="hint">タップすると消える</p>
-  </div>
 
 <script>
   let memos = JSON.parse(localStorage.getItem("memos")) || [];
