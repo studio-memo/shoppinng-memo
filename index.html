@@ -135,7 +135,18 @@ li span {
 </div>
     <p class="hint">タップすると消える</p>
   </div>
+<div id="editModal" class="modal hidden">
+  <div class="modal-content">
+    <h2>タスクを編集</h2>
 
+    <input id="editInput" type="text">
+
+    <div class="modal-buttons">
+      <button onclick="closeEditModal()">キャンセル</button>
+      <button onclick="saveEditModal()">保存</button>
+    </div>
+  </div>
+</div>
 <script>
   let memos = JSON.parse(localStorage.getItem("memos")) || [];
 
