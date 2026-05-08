@@ -41,7 +41,7 @@
       cursor: pointer;
     }
 
-  li {
+ li {
   width: 100%;
   box-sizing: border-box;
 
@@ -50,10 +50,32 @@
   gap: 12px;
 
   background: #eee;
-  margin-bottom: 8px;
-  padding: 10px;
-  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
   list-style: none;
+}
+.bottom-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.bottom-buttons button,
+.restore-button {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border: 1px solid #aaa;
+  border-radius: 12px;
+  background: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.restore-button input {
+  display: none;
 }
     li:hover {
       background: #ddd;
@@ -100,53 +122,7 @@
 }
 li span {
   flex: 1;
-  min-width: 0;
-  margin: 0 12px;
-  text-align: left;
-  white-space: nowrap;
 }
- .modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 1000;
-}
-
-.hidden {
-  display: none;
-}
-
-.modal-content {
-  width: 100%;
-  max-width: 360px;
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.modal-content h2 {
-  margin-top: 0;
-  text-align: center;
-}
-
-#editInput {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px;
-  font-size: 16px;
-  margin: 12px 0;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-}   
   </style>
   <link rel="manifest" href="manifest.json">
 
@@ -166,10 +142,10 @@ li span {
 
     <ul id="memoList"></ul>
 <button class="clear-button" onclick="clearAllMemos()">
-  全タスク削除
+  全削除
 </button>
 <div class="backup-area">
-  <button onclick="downloadBackup()">保存ファイル作成</button>
+  <button onclick="downloadBackup()">保存</button>
   <label class="restore-button">
     復元
     <input type="file" accept=".json" onchange="restoreBackup(event)">
@@ -177,21 +153,10 @@ li span {
 </div>
     <p class="hint">タップすると消える</p>
   </div>
-<div id="editModal" class="modal hidden">
-  <div class="modal-content">
-    <h2>タスクを編集</h2>
 
-    <input id="editInput" type="text">
-
-    <div class="modal-buttons">
-      <button onclick="closeEditModal()">キャンセル</button>
-      <button onclick="saveEditModal()">保存</button>
-    </div>
-  </div>
-</div>
 <script>
   let memos = JSON.parse(localStorage.getItem("memos")) || [];
-let editingIndex = null;
+
   function saveMemos() {
     localStorage.setItem("memos", JSON.stringify(memos));
   }
@@ -230,9 +195,14 @@ deleteButton.onclick = function () {
   renderMemos();
 };
 textSpan.onclick = function () {
-  editingIndex = index;
-  document.getElementById("editInput").value = memos[index].text;
-  document.getElementById("editModal").classList.remove("hidden");
+  const newText = prompt("タスクを編集", memos[index].text);
+
+  if (newText === null) return;
+  if (newText.trim() === "") return;
+
+  memos[index].text = newText;
+  saveMemos();
+  renderMemos();
 };
     list.appendChild(li);
   });
@@ -262,23 +232,6 @@ textSpan.onclick = function () {
   memos = [];
   saveMemos();
   renderMemos();
-}
-  function closeEditModal() {
-  document.getElementById("editModal").classList.add("hidden");
-  editingIndex = null;
-}
-
-function saveEditModal() {
-  const input = document.getElementById("editInput");
-  const newText = input.value.trim();
-
-  if (editingIndex === null) return;
-  if (newText === "") return;
-
-  memos[editingIndex].text = newText;
-  saveMemos();
-  renderMemos();
-  closeEditModal();
 }
 function downloadBackup() {
   const data = JSON.stringify(memos);
