@@ -1,6 +1,12 @@
+const CACHE_NAME = "memo-app-v1";
+
 self.addEventListener("install", (event) => {
-  console.log("Service Worker installed");
+  self.skipWaiting();
 });
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener("activate", (event) => {
+  event.waitUntil(clients.claim());
+});
+
+self.addEventListener("fetch", () => {
 });
