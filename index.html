@@ -191,7 +191,7 @@ li span {
 </div>
 <script>
   let memos = JSON.parse(localStorage.getItem("memos")) || [];
-
+let editingIndex = null;
   function saveMemos() {
     localStorage.setItem("memos", JSON.stringify(memos));
   }
