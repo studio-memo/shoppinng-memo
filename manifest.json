@@ -1,9 +1,10 @@
 {
   "name": "今日のメモ",
   "short_name": "今日のメモ",
- "start_url": "./index.html",
-"scope": "./",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#FFF8A3",
   "theme_color": "#FFF8A3",
   "icons": [
