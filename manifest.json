@@ -1,8 +1,8 @@
 {
   "name": "今日のメモ",
   "short_name": "今日のメモ",
-  "start_url": "/shopping-memo/",
-  "scope": "/shopping-memo/",
+ "start_url": "./index.html",
+"scope": "./",
   "display": "standalone",
   "background_color": "#FFF8A3",
   "theme_color": "#FFF8A3",
