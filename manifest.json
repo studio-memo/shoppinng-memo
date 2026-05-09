@@ -1,20 +1,20 @@
 {
   "name": "今日のメモ",
   "short_name": "今日のメモ",
-"start_url": "/shopping-memo/index.html",
-"scope": "/shopping-memo/"
+  "start_url": "/shopping-memo/index.html",
+  "scope": "/shopping-memo/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FFF8A3",
   "theme_color": "#FFF8A3",
   "icons": [
     {
-      "src": "./memo-icon-192.png",
+      "src": "/shopping-memo/memo-icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "./memo-icon-512.png",
+      "src": "/shopping-memo/memo-icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
